@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container-fluid">
+  <header>
+      <%- include('../partials/header'); %>
+  </header>
+  <div class="row">
+    <main class="col-md-12">
+        <div class="row my-4">
+          <div class="col-6">
+            <div class="card">
+              <h5 class="card-header">Average Listing Selling Price per Seller Type</h5>
+                <div class="card-body">
+                  <%if (report1Rows && report1Rows.length == 0 ) { %>
+                    No Data
+                  <% } %>
+                  <%if (report1Rows && report1Rows.length > 0) { %>
+                    <div class="table-responsive">
+                      <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Seller Type</th>
+                              <th scope="col">Average in Euro</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% report1Rows.forEach(function(row) { %>
+                              <tr>
+                                <td><%= row.sellerType %></td>
+                                <td><%= row.currency %> <%= row.avgPrice %></td>
+                              </tr>
+                          <% }); %>
+                          </tbody>
+                      </table>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="row my-4">
+          <div class="col-6">
+            <div class="card">
+              <h5 class="card-header">Percentual distribution of available cars by Make</h5>
+                <div class="card-body">
+                  <%if (report2Rows && report1Rows.length == 0 ) { %>
+                    No Data
+                  <% } %>
+                  <%if (report2Rows && report1Rows.length > 0) { %>
+                    <div class="table-responsive">
+                      <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Make</th>
+                              <th scope="col">Distribution</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% report2Rows.forEach(function(row) { %>
+                              <tr>
+                                <td><%= row.make %></td>
+                                <td><%= row.percentual %>%</td>
+                              </tr>
+                          <% }); %>
+                          </tbody>
+                      </table>
+                    </div>
+                  <% } %>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="row my-4">
+          <div class="col-6">
+            <div class="card">
+              <h5 class="card-header">Average price of the 30% most contacted listings</h5>
+                <div class="card-body">
+                  <%if (!report3Value) { %>
+                    No Data
+                  <% } %>
+                  <%if (report3Value) { %>
+                      <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">Average price</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                  <td><%= report3Value %></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                      </div>
+                  <% } %>
+                </div>
+            </div>
+        </div>
+        </div>
+        <h1 class="h2">The Top 5 most contacted listings per Month</h1>
+        <%if (report4Tables && Object.keys(report4Tables).length === 0) { %>
+          No Data
+          <% } %>
+        <% Object.keys(report4Tables).forEach(function(month) { %>
+          <div class="row my-4">
+            <div class="col-6">
+              <div class="card">
+                <h5 class="card-header">Month: <%= month %></h5>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table">
+                          <thead>
+                            <tr>
+                              <th scope="col">Ranking</th>
+                              <th scope="col">Listing Id</th>
+                              <th scope="col">Make</th>
+                              <th scope="col">Selling Price</th>
+                              <th scope="col">Mileage</th>
+                              <th scope="col">Total Amount of contacts</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <% report4Tables[month].forEach(function(row) { %>
+                              <tr>
+                                <td><%= row.rank %></td>
+                                <td><%= row.listingid %></td>
+                                <td><%= row.make %></td>
+                                <td><%= row.price %></td>
+                                <td><%= row.mileage %></td>
+                                <td><%= row.contactscount %></td>
+                              </tr>
+                          <% }); %>
+                          </tbody>
+                      </table>
+                    </div>
+                  </div>
+              </div>
+          </div>
+          </div>
+        <% }); %>
+
+    </main>
+  </div>
+  <footer>
+      <%- include('../partials/footer'); %>
+  </footer>
+</body>
+</html>
