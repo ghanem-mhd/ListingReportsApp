@@ -5,7 +5,7 @@
 
 ## Running Locally
 
-Make sure you have [Node.js](http://nodejs.org/).
+Make sure you have [Node.js 12.x](http://nodejs.org/).
 
 ```sh
 $ git clone https://github.com/ghanem-mhd/ListingReportsApp.git # or clone your own fork
