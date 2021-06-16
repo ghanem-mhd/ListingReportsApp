@@ -25,7 +25,7 @@ class IndexController {
         response['report3Value'] = '';
       }
 
-      const report4Rows = await this.reportsService.calculateMostContactedListingsPerMonth(10);
+      const report4Rows = await this.reportsService.calculateMostContactedListingsPerMonth(5);
       report4Rows.forEach(object => {
         object['price'] = this.formatPrice(object['price']);
       });
